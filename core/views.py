@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
 def Index(request):
-    return render(request, "index.html")
+    contexto = {
+        'curso': "Curso da Udemy"
+    }
+    return render(request, "index.html", contexto)
