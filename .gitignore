@@ -1,1 +1,10 @@
-/python_django_udemy/settings.py/*
+
+/python_django_udemy/venv
+
+__pycache__
+
+*.*~
+
+*.pyc
+
+.idea

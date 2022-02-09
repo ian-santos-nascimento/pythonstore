@@ -1,0 +1,1 @@
+web: gunicorn python_django_udemy.wsgi --log-file -
