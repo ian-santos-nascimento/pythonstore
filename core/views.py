@@ -2,8 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.template import loader
+from django.contrib import messages
 
 from .models import Produto
+
+from .forms import ContatoFormulario
 
 
 def index(request):
@@ -22,6 +25,27 @@ def produtos(request, pk):
         'produto': prod
     }
     return render(request, 'produto.html', context)
+
+
+def contato_novo(request):
+    formulario = ContatoFormulario(request.POST or None)
+
+    if (request.method == 'POST'):
+        if formulario.is_valid():
+            nome = formulario.cleaned_data['nome']
+            email = formulario.cleaned_data['email']
+            assunto = formulario.cleaned_data['assunto']
+            mensagem = formulario.cleaned_data['mensagem']
+            print("Mensagem enviada" + assunto)
+            formulario = ContatoFormulario()
+            messages.success(request, "Enviado com sucesso")
+        else:
+            messages.error(request, "Não foi enviado com sucesso")
+    context = {
+        'form': formulario,
+        'mensagem': "Prolema no formulário"
+    }
+    return render(request, 'contato.html', context=context)
 
 
 def error404(request, exception):

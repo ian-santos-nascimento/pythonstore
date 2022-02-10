@@ -4,7 +4,8 @@ from .views import *
 
 urlpatterns = [
     path('', index, name="index"),
-    path('produto/<int:pk>', produtos, name='produto')
+    path('produto/<int:pk>', produtos, name='produto'),
+    path('contato/', contato_novo, name='contato'),
 ]
 
 handler404 = error404
