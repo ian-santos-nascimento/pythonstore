@@ -13,6 +13,8 @@ import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django.core.mail.backends.console
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -132,3 +134,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  #para produção
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#CONFIG EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#PARA PRODUCAO
+"""
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'no-reply@voce.com.br'
+EMAIL_PORT = 587
+EMAIL_USER_TSL = True
+EMAIL_HOST_PASSWORD = senha do email
+"""

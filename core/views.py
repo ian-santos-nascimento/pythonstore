@@ -32,11 +32,7 @@ def contato_novo(request):
 
     if (request.method == 'POST'):
         if formulario.is_valid():
-            nome = formulario.cleaned_data['nome']
-            email = formulario.cleaned_data['email']
-            assunto = formulario.cleaned_data['assunto']
-            mensagem = formulario.cleaned_data['mensagem']
-            print("Mensagem enviada" + assunto)
+            formulario.send()
             formulario = ContatoFormulario()
             messages.success(request, "Enviado com sucesso")
         else:
