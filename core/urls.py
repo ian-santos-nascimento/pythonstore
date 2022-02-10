@@ -3,8 +3,8 @@ from django.conf.urls import handler404, handler500
 from .views import *
 
 urlpatterns = [
-    path('', Index, name="index"),
-    path('produto/<int:pk>', Produtos, name='produto')
+    path('', index, name="index"),
+    path('produto/<int:pk>', produtos, name='produto')
 ]
 
 handler404 = error404

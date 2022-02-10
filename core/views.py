@@ -5,7 +5,8 @@ from django.template import loader
 
 from .models import Produto
 
-def Index(request):
+
+def index(request):
     produtos = Produto.objects.all()
     contexto = {
         'curso': "Curso da Udemy",
@@ -13,17 +14,20 @@ def Index(request):
     }
     return render(request, "index.html", contexto)
 
-def Produtos(request, pk):
+
+def produtos(request, pk):
     # prod = Produto.objects.get(id=pk)
-    prod = get_object_or_404(Produto, id = pk)
+    prod = get_object_or_404(Produto, id=pk)
     context = {
-        'produto' : prod
+        'produto': prod
     }
     return render(request, 'produto.html', context)
 
-def error404(request,exception):
+
+def error404(request, exception):
     template = loader.get_template('404.html')
     return HttpResponse(content=template, content_type='text/html; charset=utf8', status=404)
+
 
 def error500(request):
     template = loader.get_template('500.html')
