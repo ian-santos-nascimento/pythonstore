@@ -83,13 +83,17 @@ WSGI_APPLICATION = 'python_django_udemy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pythonstore',
-        'USER': 'root',
-        'PASSWORD': 'dev@digigov@21',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+   # 'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+     #   'NAME': 'pythonstore',
+      #  'USER': 'root',
+       # 'PASSWORD': '123',  #Mudar as enha
+        #'HOST': 'localhost',
+        #'PORT': '3306'
+
 }
 
 
