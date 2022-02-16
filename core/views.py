@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from .models import Produto
 
-from .forms import ContatoFormulario
+from .forms import ContatoFormulario, ProdutoModelForm
 
 
 def index(request):
@@ -18,12 +18,21 @@ def index(request):
     return render(request, "index.html", contexto)
 
 
-def produtos(request, pk):
-    # prod = Produto.objects.get(id=pk)
-    prod = get_object_or_404(Produto, id=pk)
-    context = {
-        'produto': prod
-    }
+def produtos(request):
+
+    if str(request.method) == "POST":
+        form = ProdutoModelForm(request.POST, request.FILES)
+        if(form.is_valid()):
+            form.save()
+            messages.success(request, "Salvo com sucesso")
+            form = ProdutoModelForm
+        else:
+            print("Não é valido")
+    else:
+        form = ProdutoModelForm
+        context = {
+            'form': form
+        }
     return render(request, 'produto.html', context)
 
 

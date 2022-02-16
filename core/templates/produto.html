@@ -1,9 +1,9 @@
-{% load static %}
+{% load bootstrap4 %}
 <!doctype html>
 <html lang="pt-br">
 <head>
+    {% bootstrap_css %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,24 +11,20 @@
 </head>
 <body>
 
-<img src="{% static 'images/django.png' %}"/>
-<table>
-    <thead>
-    <tr>
-        <th> Produto</th>
-        <th> Preço</th>
-        <th> Estoque</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><a> {{ produto.nome }} </a></td>
-        <td>R$ {{ produto.preco }}</td>
-        <td>{{ produto.estoque }}</td>
-    </tr>
-    </tbody>
-</table>
-<button onclick="teste();">TESTE</button>
-<script type="text/javascript" src="{% static 'js/teste.js' %}"></script>
+    <div class="container">
+        <h1>Produto</h1>
+        {% bootstrap_messages %}
+
+        <form action="{% url 'produto' %}" method="post" class="form" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+
+        {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-sm btn-success">Finalizar</button>
+            {% endbuttons %}
+        </form>
+    </div>
+
+{% bootstrap_javascript jquery='full' %}
 </body>
 </html>
