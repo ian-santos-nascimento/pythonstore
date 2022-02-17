@@ -25,4 +25,4 @@ class ContatoFormulario(forms.Form):
 class ProdutoModelForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields= ["nome", "preco", "estoque"]
+        fields= ["nome", "preco", "estoque", "imagem"]

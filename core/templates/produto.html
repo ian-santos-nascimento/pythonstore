@@ -15,7 +15,7 @@
         <h1>Produto</h1>
         {% bootstrap_messages %}
 
-        <form action="{% url 'produto' %}" method="post" class="form" enctype="multipart/form-data" autocomplete="off">
+        <form action="{% url 'produto' %}" method="post" class="form"  enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
 
         {% bootstrap_form form %}
