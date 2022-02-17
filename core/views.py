@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.contrib import messages
@@ -19,21 +19,23 @@ def index(request):
 
 
 def produtos(request):
-
-    if str(request.method) == "POST":
-        form = ProdutoModelForm(request.POST, request.FILES)
-        if(form.is_valid()):
-            form.save()
-            messages.success(request, "Salvo com sucesso")
-            form = ProdutoModelForm
+    if str(request.user) != 'AnonymousUser':
+        if str(request.method) == 'POST':
+            form = ProdutoModelForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Produto salvo com sucesso.')
+                form = ProdutoModelForm()
+            else:
+                messages.error(request, 'Erro ao salvar produto.')
         else:
-            print("Não é valido")
-    else:
-        form = ProdutoModelForm
+            form = ProdutoModelForm()
         context = {
             'form': form
         }
-    return render(request, 'produto.html', context)
+        return render(request, 'produto.html', context)
+    else:
+        return redirect('index')
 
 
 def contato_novo(request):
