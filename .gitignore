@@ -1,1 +1,6 @@
 python_django_udemy/settings.py
+__pycache__
+*.*~
+
+*.pyc
+.idea
